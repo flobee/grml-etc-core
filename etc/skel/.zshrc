@@ -332,7 +332,12 @@ fi
 #getanames ()  { perl -ne 'while ( m/a name="([^"]*)"/gc ) { print $1, "\n"; }' $* }
 #getforms ()   { perl -ne 'while ( m:(\</?(input|form|select|option).*?\>):gic ) { print $1, "\n"; }' $* }
 #getstrings () { perl -ne 'while ( m/"(.*?)"/gc ) { print $1, "\n"; }' $*}
-#getanchors () { perl -ne 'while ( m/«([^«»\n]+)»/gc ) { print $1, "\n"; }' $* }
+
+# this line make editors seems to be ISO8859-15 instead od UTF-8. 
+# Reverse check: open in a browser: https://github.dev/grml/grml-etc-core/blob/master/etc/skel/.zshrc#L335C40-L335C47
+# the line looks different for me.
+#getanchors () { perl -ne 'while ( m/Â«([^Â«Â»\n]+)Â»/gc ) { print $1, "\n"; }' $* }
+
 #showINC ()    { perl -e 'for (@INC) { printf "%d %s\n", $i++, $_ }' }
 #vimpm ()      { vim `perldoc -l $1 | sed -e 's/pod$/pm/'` }
 #vimhelp ()    { vim -c "help $1" -c on -c "au! VimEnter *" }
